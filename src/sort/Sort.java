@@ -3,9 +3,9 @@ package sort;
 /**
  * @author: wjy
  * @date: 2020/2/11
- * @description:
+ * @description: 排序接口
  */
 public interface Sort {
     
-    void sort(int[] arr, int n);
+    void ascendSort(int[] arr, int n);
 }

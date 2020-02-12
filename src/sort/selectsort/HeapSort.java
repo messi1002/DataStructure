@@ -10,7 +10,7 @@ import sort.Sort;
 public class HeapSort implements Sort {
     
     @Override
-    public void sort(int[] arr, int n) {
+    public void ascendSort(int[] arr, int n) {
     
     }
 }
