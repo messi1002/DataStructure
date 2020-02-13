@@ -6,11 +6,11 @@ import sort.insertsort.AdvancedInsertSort;
 /**
  * @author: wjy
  * @date: 2020/2/12
- * @description: 改进的归并排序
+ * @description: 归并排序-改进的归并排序
  */
 public class AdvancedMergeSort implements Sort {
     
-    // 递归使用归并排序，对arr[l...r]的范围进行排序。
+    // 对arr[l...r]部分进行归并排序。
     private void recursion(int[] arr, int l, int r) {
         // 优化2：递归到底时，使用插入排序(排序的高级算法都可如此优化)。
         // 元素很少时，数组近乎有序的可能性变大，插入排序有优势。

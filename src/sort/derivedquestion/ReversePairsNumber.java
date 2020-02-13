@@ -1,15 +1,14 @@
-package sort.mergesort;
-
-import sort.Sort;
+package sort.derivedquestion;
 
 /**
  * @author: wjy
- * @date: 2020/2/11
- * @description: 归并排序
+ * @date: 2020/2/13
+ * @description: 在归并排序的基础上修改
  */
-public class MergeSort implements Sort {
+public class ReversePairsNumber {
     
-    protected static void merge(int[] arr, int l, int mid, int r) {
+    private long merge(int[] arr, int l, int mid, int r) {
+        long number = 0;
         int[] aux = new int[r - l + 1];
         for (int i = l; i <= r; i++) {
             aux[i - l] = arr[i];
@@ -24,28 +23,29 @@ public class MergeSort implements Sort {
             }
             else if (aux[i - l] > aux[j - l]) {
                 arr[k] = aux[j++ - l];
+                number += (long) (mid - i + 1);
             }
             else {
                 arr[k] = aux[i++ - l];
             }
         }
+        return number;
     }
     
     // 对arr[l...r]部分进行归并排序。
-    private void recursion(int[] arr, int l, int r) {
+    private long recursion(int[] arr, int l, int r) {
         if (l >= r) {
-            return;
+            return 0L;
         }
         // 发生溢出
 //        int mid = (l + r) / 2;
         int mid = (l + r) >>> 1;
-        recursion(arr, l, mid);
-        recursion(arr, mid + 1, r);
-        merge(arr, l, mid, r);
+        long number1 = recursion(arr, l, mid);
+        long number2 = recursion(arr, mid + 1, r);
+        return number1 + number2 + merge(arr, l, mid, r);
     }
     
-    @Override
-    public void ascendSort(int[] arr, int n) {
-        recursion(arr, 0, n - 1);
+    public long ascendSort(int[] arr, int n) {
+        return recursion(arr, 0, n - 1);
     }
 }
