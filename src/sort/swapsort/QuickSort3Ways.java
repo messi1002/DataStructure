@@ -20,7 +20,7 @@ public class QuickSort3Ways implements Sort {
         }
     
         // partition
-        SortHelper.swap(arr, l, (int) (Math.random() * (r - l + 1) + r));
+        SortHelper.swap(arr, l, (int) (Math.random() * (r - l + 1) + l));
         // arr[l+1...lt] < v
         // arr[gt...r] > v
         // arr[lt+1...i) == v

@@ -15,7 +15,7 @@ public class AdvancedQuickSort implements Sort {
     // 使用数组中的随机元素作为分界的标志点
     // 返回index，使得arr[l...index-1] < arr[index]; arr[index+1...r] > arr[p]
     private int partition(int[] arr, int l, int r) {
-        SortHelper.swap(arr, l, (int) (Math.random() * (r - l + 1) + r));
+        SortHelper.swap(arr, l, (int) (Math.random() * (r - l + 1) + l));
         int value = arr[l], j = l;
         for (int i = l + 1; i <= r; i++) {
             if (arr[i] < value) {
