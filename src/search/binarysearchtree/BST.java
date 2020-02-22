@@ -1,5 +1,8 @@
 package search.binarysearchtree;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
  * @author: wjy
  * @date: 2020/2/22
@@ -374,6 +377,80 @@ public class BST {
                 // 节点数+1
                 count++;
                 return node;
+            }
+        }
+    }
+    
+    /**
+     * 功能描述: 对以root为根的二叉搜索树进行前序遍历
+     *
+     * @param: [root]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/23 1:29
+     */
+    public void preOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        System.out.println(root.key);
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+    
+    /**
+     * 功能描述: 对以root为根的二叉搜索树进行中序遍历
+     *
+     * @param: [root]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/23 1:30
+     */
+    public void inOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inOrder(root.left);
+        System.out.println(root.key);
+        inOrder(root.right);
+    }
+    
+    /**
+     * 功能描述: 对以root为根的二叉搜索树进行后序遍历
+     *
+     * @param: [root]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/23 1:30
+     */
+    public void postOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.println(root.key);
+    }
+    
+    /**
+     * 功能描述: 层序遍历
+     *
+     * @param: [root]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/23 1:42
+     */
+    public void levelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new PriorityQueue<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode treeNode = queue.poll();
+            System.out.println(treeNode.key);
+            if (treeNode.left != null) {
+                queue.add(treeNode.left);
+            }
+            if (treeNode.right != null) {
+                queue.add(treeNode.right);
             }
         }
     }
