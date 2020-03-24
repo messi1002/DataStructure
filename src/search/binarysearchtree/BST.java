@@ -275,7 +275,7 @@ public class BST {
     private TreeNode removeMin(TreeNode root) {
         if (root.left == null) {
             count--;
-            return root;
+            return root.right;
         }
         root.left = removeMin(root.left);
         return root;
@@ -293,7 +293,7 @@ public class BST {
     private TreeNode removeMax(TreeNode root) {
         if (root.right == null) {
             count--;
-            return root;
+            return root.left;
         }
         root.right = removeMax(root.right);
         return root;

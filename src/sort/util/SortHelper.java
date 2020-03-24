@@ -8,7 +8,7 @@ package sort.util;
 public class SortHelper {
     
     /**
-     * 功能描述: 验证数组是否有序
+     * 功能描述: 验证数组是否有序(升序)
      *
      * @param: [arr, n]
      * @return: boolean
@@ -40,7 +40,7 @@ public class SortHelper {
     }
     
     /**
-     * 功能描述: 交换数组中的数字
+     * 功能描述: 交换数组中的元素
      *
      * @param: [arr, i, j]
      * @return: void

@@ -17,6 +17,7 @@ public class HeapSort implements Sort {
         for (int i = 0; i < n; i++) {
             advancedMaxHeap1.insert(arr[i]);
         }
+        // 堆排序
         for (int i = n - 1; i >= 0; i--) {
             arr[i] = advancedMaxHeap1.removeMax();
         }

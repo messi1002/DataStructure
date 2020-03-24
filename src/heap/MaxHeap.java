@@ -1,9 +1,11 @@
 package heap;
 
+import sort.util.SortHelper;
+
 /**
  * @author: wjy
  * @date: 2020/2/14
- * @description: 最大堆
+ * @description: 最大堆(arr[1]处存储最大堆的第一个元素)
  */
 public class MaxHeap {
     
@@ -17,28 +19,34 @@ public class MaxHeap {
         this.capacity = n;
     }
     
-    private void swap(int i, int j) {
-        if (i != j) {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-    }
-    
-    // 将index索引处的元素向上移动来维持堆的定义(入队)
-    private void shiftUp(int index) {
+    /**
+     * 功能描述: 向上调整最大堆(入队时调用)
+     *
+     * @param: [index]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/14 7:44
+     */
+    public void shiftUp(int index) {
         // 防止越界
         while (index > 1 && arr[index / 2] < arr[index]) {
-            swap(index / 2, index);
+            SortHelper.swap(arr, index / 2, index);
             index /= 2;
         }
     }
     
-    // 出队
-    private void shiftDown(int index) {
+    /**
+     * 功能描述: 向下调整最大堆(出队时调用)
+     *
+     * @param: [index]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/14 7:44
+     */
+    public void shiftDown(int index) {
         // 判断是否有左孩子
-        // 哪个孩子大，就和哪个孩子换。
         while (index * 2 <= count) {
+            // 哪个孩子大，就和哪个孩子交换。
             int lc = index * 2, rc = lc + 1, res = lc;
             if (rc <= count && arr[rc] > arr[lc]) {
                 res = rc;
@@ -46,19 +54,31 @@ public class MaxHeap {
             if (arr[index] >= arr[res]) {
                 break;
             }
-            swap(index, res);
+            SortHelper.swap(arr, index, res);
             index = res;
         }
     }
     
-    public int size() {
-        return count;
-    }
-    
+    /**
+     * 功能描述: 判断最大堆是否为空
+     *
+     * @param: []
+     * @return: boolean
+     * @auther: wjy
+     * @date: 2020/2/14 7:49
+     */
     public boolean isEmpty() {
         return count == 0;
     }
     
+    /**
+     * 功能描述: 打印最大堆
+     *
+     * @param: []
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/14 7:50
+     */
     public void printArr() {
         for (int i = 1; i <= count; i++) {
             System.out.print(arr[i] + " ");
@@ -66,6 +86,14 @@ public class MaxHeap {
         System.out.println();
     }
     
+    /**
+     * 功能描述: 入队
+     *
+     * @param: [e]
+     * @return: void
+     * @auther: wjy
+     * @date: 2020/2/14 10:14
+     */
     public void insert(int e) {
         if (count + 1 > capacity) {
             return;
@@ -74,13 +102,24 @@ public class MaxHeap {
         shiftUp(count);
     }
     
-    // 只能取出根结点，然后将堆中最后一个元素移到根结点的位置(为了维持完全二叉树的性质)。
+    /**
+     * 功能描述: 出队
+     * 最大堆中只能取出根节点
+     * 为了维持完全二叉树的性质，将堆中最后一个元素移到根节点的位置，然后向下调整最大堆。
+     *
+     * @param: []
+     * @return: int
+     * @auther: wjy
+     * @date: 2020/2/14 7:44
+     */
     public int removeMax() {
         if (count < 1 ) {
             return 0;
         }
+        // 取出根节点
         int e = arr[1];
-        swap(1, count--);
+        // 将堆中最后一个元素移到根节点的位置
+        SortHelper.swap(arr, 1, count--);
         shiftDown(1);
         return e;
     }
